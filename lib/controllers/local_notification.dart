@@ -13,7 +13,7 @@ class LocalNotificationService {
     final InitializationSettings initializationSettings =
         InitializationSettings(
             android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
-            iOS: IOSInitializationSettings(
+            iOS: DarwinInitializationSettings(
                 requestSoundPermission: true,
                 requestBadgePermission: true,
                 requestAlertPermission: true,
@@ -21,18 +21,21 @@ class LocalNotificationService {
                     String? body, String? payload) async {
                   log('---->>>ALERT FOR IOS');
                 }));
-    _flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String? route) async {
-      // Navigator.of(context).PushNamed(route);
-    });
+    _flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+
+      //     onSelectNotification: (String? route) async {
+      //   // Navigator.of(context).PushNamed(route);
+      // }
+    );
   }
 
   static void display(RemoteMessage message) {
-    var m=message.notification!.body!.split(':');
-      var msgBody=m.last;
+    var m = message.notification!.body!.split(':');
+    var msgBody = m.last;
     if (Platform.isIOS) {
-      const NotificationDetails _details = NotificationDetails(
-          iOS: IOSNotificationDetails(
+      const NotificationDetails details = NotificationDetails(
+          iOS: DarwinNotificationDetails(
             presentAlert: true,
             presentSound: true,
             presentBadge: true,
@@ -50,12 +53,12 @@ class LocalNotificationService {
         id,
         message.notification!.title,
         msgBody,
-        _details,
+        details,
         payload: message.data['route'],
       );
     } else {
-      const NotificationDetails _details = NotificationDetails(
-          iOS: IOSNotificationDetails(),
+      const NotificationDetails details = NotificationDetails(
+          iOS: DarwinNotificationDetails(),
           android: AndroidNotificationDetails(
             "easyApproach",
             "easyApproach channel",
@@ -68,7 +71,7 @@ class LocalNotificationService {
         id,
         message.notification!.title,
         msgBody,
-        _details,
+        details,
       );
     }
   }
