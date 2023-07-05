@@ -23,7 +23,7 @@
           </intent>
           </queries>
    <application
-        android:label="com.tsaveuser.www"
+        android:label="t save"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
           <meta-data android:name="com.google.android.geo.API_KEY"

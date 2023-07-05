@@ -19,7 +19,7 @@ import '../utils/color.dart';
 class GeneralController extends GetxController {
   GetStorage boxStorage = GetStorage();
   FirebaseAuthentication firebaseAuthentication = FirebaseAuthentication();
-  DocumentReference<Map<String, dynamic>> ?tableBookingDocumentReference;
+  DocumentReference<Map<String, dynamic>>? tableBookingDocumentReference;
   focusOut(BuildContext context) {
     FocusScopeNode currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus) {
@@ -170,7 +170,8 @@ class GeneralController extends GetxController {
       log(e.toString());
     }
   }
- ///------------------------------------LOCATION----START-----------------
+
+  ///------------------------------------LOCATION----START-----------------
   geo_locator.Position? currentPosition;
   double? latitude;
   double? longitude;
@@ -197,7 +198,7 @@ class GeneralController extends GetxController {
       ServiceStatus serviceStatus = await Permission.location.serviceStatus;
       bool enabled = (serviceStatus == ServiceStatus.enabled);
 
-      if (!enabled) {
+      if (enabled) {
         log('IOS permission--->> $enabled');
       } else {
         getCurrentLocation();
@@ -281,16 +282,17 @@ class GeneralController extends GetxController {
   }
 
   ///------------------------------------LOCATION----END-----------------
-///----------------------------update address----------------------------
+  ///----------------------------update address----------------------------
 
-updateAdress() async {
-
-   User? currentUserForFcm = FirebaseAuth.instance.currentUser;
+  updateAdress() async {
+    User? currentUserForFcm = FirebaseAuth.instance.currentUser;
+    if (currentUserForFcm == null) return;
     Future.delayed(Duration(seconds: 5)).then((value) {
       print('address update $currentAddress');
+
       FirebaseFirestore.instance
           .collection('users')
-          .doc(currentUserForFcm!.uid)
+          .doc(currentUserForFcm.uid)
           .update({'address': currentAddress});
     });
   }

@@ -1,84 +1,40 @@
 {
   "project_info": {
-    "project_number": "1027716689465",
-    "project_id": "t-save-project",
-    "storage_bucket": "t-save-project.appspot.com"
+    "project_number": "99143310321",
+    "project_id": "t-save-1f869",
+    "storage_bucket": "t-save-1f869.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1027716689465:android:95eff69b74d6ceed5b67e8",
-        "android_client_info": {
-          "package_name": "com.example.t_save_sp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1027716689465-ogb8m9k7llr6dp2blohrhqjdn7d5epdi.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.t_save_sp",
-            "certificate_hash": "049569347211c591929547844e1cbd08a2a8772f"
-          }
-        },
-        {
-          "client_id": "1027716689465-0p8fttknr66ha2g200b3i40adfigtdku.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCHqGKFHBT7-xDVEquiKwKkcuXOkuTqa9E"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1027716689465-0p8fttknr66ha2g200b3i40adfigtdku.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1027716689465-45jrcd36n6p2ssvngo3l6bruktpfhtef.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.com.tsaveuser.www.www"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1027716689465:android:635181d8eab856245b67e8",
+        "mobilesdk_app_id": "1:99143310321:android:d89b1b9ab325061392c250",
         "android_client_info": {
           "package_name": "com.tsaveuser.www"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1027716689465-0p8fttknr66ha2g200b3i40adfigtdku.apps.googleusercontent.com",
+          "client_id": "99143310321-at3tevlijku9veua8pvr88db0hk76ihv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCHqGKFHBT7-xDVEquiKwKkcuXOkuTqa9E"
+          "current_key": "AIzaSyBFS7y2UjhDkpGYb4z0hNL3p8t1zVZo65E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1027716689465-0p8fttknr66ha2g200b3i40adfigtdku.apps.googleusercontent.com",
+              "client_id": "99143310321-4kc76s5mvj9uvvjb5obattbvocceknq5.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "1027716689465-45jrcd36n6p2ssvngo3l6bruktpfhtef.apps.googleusercontent.com",
+              "client_id": "99143310321-t7k0kt5730b5glloec3q4u0sp3qdlpv1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.com.tsaveuser.www.www"
+                "bundle_id": "com.tsaveuser.www"
               }
             }
           ]
