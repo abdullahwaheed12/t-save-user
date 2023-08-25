@@ -13,7 +13,6 @@ import '../../widgets/custom_dialog.dart';
 import 'logic.dart';
 import 'state.dart';
 import 'view_map.dart';
-import 'view_phone_field.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final SignUpLogic logic =  Get.put(SignUpLogic());
+  final SignUpLogic logic = Get.put(SignUpLogic());
   final SignUpState state = Get.find<SignUpLogic>().state;
 
   final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
@@ -33,7 +32,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     super.initState();
-   
 
     Get.find<SignUpLogic>().requestLocationPermission(context);
   }
@@ -276,7 +274,16 @@ class _SignUpPageState extends State<SignUpPage> {
                               _generalController.focusOut(context);
                               if (_signUpFormKey.currentState!.validate()) {
                                 if (_signUpLogic.userImage != null) {
-                                  Get.to(const PhoneSignUpView());
+                                  Get.find<GeneralController>()
+                                      .updateFormLoader(true);
+                                  await Get.find<GeneralController>()
+                                      .firebaseAuthentication
+                                      .signUp(context);
+
+                                  Get.find<GeneralController>()
+                                      .updateFormLoader(false);
+
+                                  // Get.to(const PhoneSignUpView());
                                 } else {
                                   showDialog(
                                       context: context,
@@ -385,7 +392,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     "Camera",
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(fontSize: 18),
                   )),
               CupertinoDialogAction(
@@ -413,7 +420,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     "Gallery",
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(fontSize: 18),
                   )),
             ],

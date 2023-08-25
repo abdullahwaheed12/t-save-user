@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:com.tsaveuser.www/controllers/general_controller.dart';
-import 'package:com.tsaveuser.www/firebase_options.dart';
 import 'package:com.tsaveuser.www/utils/theme.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -26,7 +25,7 @@ Future<void> _firebaseMessagingBackgroundHandler(
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
   await GetStorage.init();
 
   if (defaultTargetPlatform == TargetPlatform.android) {

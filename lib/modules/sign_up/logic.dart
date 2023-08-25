@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -15,8 +13,6 @@ import 'package:geolocator/geolocator.dart' as geo_locator;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:system_settings/system_settings.dart';
 import '../../controllers/general_controller.dart';
-import '../../utils/color.dart';
-import '../../widgets/custom_dialog.dart';
 import 'state.dart';
 
 class SignUpLogic extends GetxController {
@@ -43,65 +39,9 @@ class SignUpLogic extends GetxController {
   ///------------------------------------OTP----START-----------------
   String? phoneNumber;
 
-  String? phoneOtp;
-  String? verificationIDForVerify;
-  Future<bool?> otpFunction(String? phone, BuildContext context) async {
-    log('-----------------OtpFunctionStartHere-----------------');
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    _auth.verifyPhoneNumber(
-      
-      phoneNumber: phone!,
-      timeout: const Duration(seconds: 55),
-      verificationCompleted: (AuthCredential credential) async {
-        log('Credential from verificationCompleted ---->> $credential');
-      },
-      verificationFailed: (FirebaseAuthException exception) {
-        log('Exception ---->> ${exception.message}');
-      },
-      codeSent: (String? verificationId, [int? forceResendingToken]) {
-        verificationIDForVerify = verificationId;
-        log('verificationId ---->> $verificationId');
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
-    return null;
-  }
-
-  verifyOTP(BuildContext context, var otp) async {
-    log('--------------VerifyOtpStartsHere--------------');
-    try {
-      AuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationIDForVerify!,
-        smsCode: otp,
-      );
-
-      uploadFile(userImage, context);
-
-      log('Credential ---->> $credential');
-    } catch (e) {
-      Get.find<GeneralController>().updateFormLoader(false);
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return CustomDialogBox(
-              title: 'FAILED!',
-              titleColor: customDialogErrorColor,
-              descriptions: 'Incorrect OTP',
-              text: 'Ok',
-              functionCall: () {
-                Navigator.pop(context);
-              },
-              img: 'assets/dialog_error.svg',
-            );
-          });
-      log('Exception --->> $e');
-    }
-  }
-
   ///------------------------------------OTP----END-----------------
-  Future<firebase_storage.UploadTask?> uploadFile(
-      File? file, BuildContext context) async {
-    if (file == null) {
+  Future<firebase_storage.UploadTask?> uploadFile(BuildContext context) async {
+    if (userImage == null) {
       Get.find<GeneralController>().updateFormLoader(false);
 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -122,9 +62,7 @@ class SignUpLogic extends GetxController {
 
     downloadURL = await (await uploadTask).ref.getDownloadURL();
     log('URL---->>$downloadURL');
-    if (!await Get.find<GeneralController>().firebaseAuthentication.signUp()) {
-      return null;
-    }
+
     return Future.value(uploadTask);
   }
 
@@ -324,5 +262,4 @@ class SignUpLogic extends GetxController {
   }
 
   ///------------------------------------MAP-DATA----END-----------------
-
 }

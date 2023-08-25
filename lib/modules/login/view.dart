@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -25,7 +24,9 @@ class _LoginPageState extends State<LoginPage> {
   bool? obscureText = true;
   @override
   Widget build(BuildContext context) {
-    Get.find<GeneralController>()..getCurrentLocation()..updateAdress();
+    Get.find<GeneralController>()
+      ..getCurrentLocation()
+      ..updateAdress();
     return GetBuilder<LoginLogic>(
       builder: (_loginLogic) => GestureDetector(
         onTap: () {
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         child: GetBuilder<GeneralController>(
           builder: (_generalController) => ModalProgressHUD(
             inAsyncCall: _generalController.formLoader!,
-            progressIndicator:  const CircularProgressIndicator(
+            progressIndicator: const CircularProgressIndicator(
               color: customThemeColor,
             ),
             child: Scaffold(
@@ -73,9 +74,9 @@ class _LoginPageState extends State<LoginPage> {
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.black.withOpacity(0.5))),
-                              focusedBorder:  const UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                   borderSide:
-                                       BorderSide(color: customThemeColor)),
+                                      BorderSide(color: customThemeColor)),
                               errorBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red)),
                             ),
@@ -126,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.black.withOpacity(0.5))),
-                              focusedBorder:  const UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                   borderSide:
                                       BorderSide(color: customThemeColor)),
                               errorBorder: const UnderlineInputBorder(
@@ -163,7 +164,6 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: BoxDecoration(
                                 color: customThemeColor,
                                 borderRadius: BorderRadius.circular(30),
-                                
                               ),
                               child: Center(
                                 child:
@@ -172,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: MediaQuery.of(context).size.height * .03,
                         ),
                         Row(
@@ -192,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * .03,
                         ),
-                        
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -231,51 +231,9 @@ class _LoginPageState extends State<LoginPage> {
                                 )),
                           ),
                         ]),
-
-                        ///---phone-signIn
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(PageRoutes.phoneLogin);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                               const Icon(
-                                Icons.phone,
-                                color: customThemeColor,
-                              ),
-                              Text(" Sign In with Phone Number",
-                                  style: state.registerTextStyle)
-                            ],
-                          ),
-                        ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .03,
+                          height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: Align(
-                              alignment: Alignment.centerRight,
-                              child: InkWell(
-                                onTap: () {
-                                  _generalController.updateFormLoader(true);
-                                  _generalController.firebaseAuthentication
-                                      .signInWithGoogle();
-                                },
-                                child: Image.asset(
-                                  'assets/google.png',
-                                  height: 50,
-                                  width: 70,
-                                ),
-                              )),
-                            ),
-                         
-                          ],
-                        ),
-                        SizedBox(height: 20,),
                       ],
                     ),
                   ),

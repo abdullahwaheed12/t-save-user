@@ -128,7 +128,7 @@ class FirebaseAuthentication {
   }
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  Future<bool> signUp() async {
+  Future<bool> signUp(BuildContext context) async {
     try {
       print('email -----> ${Get.find<SignUpLogic>().emailController.text}');
       print(
@@ -138,6 +138,7 @@ class FirebaseAuthentication {
               email: Get.find<SignUpLogic>().emailController.text,
               password: Get.find<SignUpLogic>().passwordController.text)
           .then((user) {
+        Get.find<SignUpLogic>().uploadFile(context);
         Get.find<GeneralController>().boxStorage.write('uid', user.user!.uid);
         Get.find<GeneralController>()
             .boxStorage
