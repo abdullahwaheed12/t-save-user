@@ -207,30 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                             )
                           ],
                         ),
-                        Row(children: <Widget>[
-                          Expanded(
-                            child: Container(
-                                margin: const EdgeInsets.only(
-                                    left: 20.0, right: 20.0),
-                                child: Divider(
-                                  color: customThemeColor.withOpacity(0.9),
-                                  height: 50,
-                                )),
-                          ),
-                          Text(
-                            "OR",
-                            style: state.doNotTextStyle,
-                          ),
-                          Expanded(
-                            child: Container(
-                                margin: const EdgeInsets.only(
-                                    left: 15.0, right: 10.0),
-                                child: Divider(
-                                  color: customThemeColor.withOpacity(0.9),
-                                  height: 50,
-                                )),
-                          ),
-                        ]),
+
                         SizedBox(
                           height: 20,
                         ),

@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:com.tsaveuser.www/modules/shop_detail/tabs/about_shop.dart';
 import 'package:com.tsaveuser.www/modules/shop_detail/tabs/booking_appointment.dart';
@@ -14,8 +13,7 @@ import 'logic.dart';
 import 'state.dart';
 
 class ShopDetailPage extends StatefulWidget {
-  const ShopDetailPage({Key? key, required this.shopModel})
-      : super(key: key);
+  const ShopDetailPage({Key? key, required this.shopModel}) : super(key: key);
   final DocumentSnapshot<Map<String, dynamic>> shopModel;
 
   @override
@@ -34,8 +32,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
   @override
   void initState() {
     super.initState();
-    logic =
-        Get.put(ShopDetailLogic(shopModel: widget.shopModel));
+    logic = Get.put(ShopDetailLogic(shopModel: widget.shopModel));
     logic.currentShop(widget.shopModel);
     state = logic.state;
     Get.find<ShopDetailLogic>().updateCenter(LatLng(
@@ -44,8 +41,8 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
     ));
     Get.find<ShopDetailLogic>()
         .onAddMarkerButtonPressed(context, widget.shopModel.get('name'));
-    Get.find<GeneralController>().checkWishList(
-        context, widget.shopModel.get('id'), checkWishList);
+    Get.find<GeneralController>()
+        .checkWishList(context, widget.shopModel.get('id'), checkWishList);
   }
 
   @override
@@ -78,8 +75,8 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                     favourites = true;
                   });
                 } else {
-                  Get.find<GeneralController>().deleteWishList(
-                      context, widget.shopModel.get('id'));
+                  Get.find<GeneralController>()
+                      .deleteWishList(context, widget.shopModel.get('id'));
                   setState(() {
                     favourites = false;
                   });
@@ -111,8 +108,7 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                         child: InkWell(
                           onTap: () {
                             Get.to(ImageViewScreen(
-                              networkImage:
-                                  '${widget.shopModel.get('image')}',
+                              networkImage: '${widget.shopModel.get('image')}',
                             ));
                           },
                           child: Container(
@@ -151,11 +147,11 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                '${widget.shopModel.get('open_time')} - ${widget.shopModel.get('close_time')}',
-                                style: state.productPriceStyle!.copyWith(
-                                    color: customTextblackColor, fontSize: 14),
-                              ),
+                              // Text(
+                              //   '${widget.shopModel.data()!['open_time']} - ${widget.shopModel.data()!['close_time']}',
+                              //   style: state.productPriceStyle!.copyWith(
+                              //       color: customTextblackColor, fontSize: 14),
+                              // ),
                             ],
                           ),
                         ),
@@ -237,9 +233,9 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
                 ),
 
                 if (_shopDetailLogic.tabIndex == 0)
-                 BookginAppointment(shopModel: widget.shopModel),
+                  BookginAppointment(shopModel: widget.shopModel),
                 if (_shopDetailLogic.tabIndex == 1)
-              AboutShop(shopModel: widget.shopModel)
+                  AboutShop(shopModel: widget.shopModel)
               ],
             ),
           ),

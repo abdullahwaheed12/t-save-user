@@ -13,7 +13,6 @@ import 'package:com.tsaveuser.www/modules/home/logic.dart';
 import 'package:com.tsaveuser.www/utils/color.dart';
 import 'package:com.tsaveuser.www/widgets/booking_upload_dialog.dart';
 import 'dart:math' as math;
-import 'package:intl/intl.dart';
 
 import 'state.dart';
 
@@ -49,17 +48,15 @@ class ShopDetailLogic extends GetxController {
   void onInit() {
     super.onInit();
     print('on init call');
-    var data = shopModel.get('close_time');
-    var closingDate = DateFormat('jm').parse(data);
-    var opningDate = DateFormat('jm').parse(shopModel.get('open_time'));
+
+    // var closingDate = DateFormat('h:mm a').parse('8:45 AM');
+    // var opningDate = DateFormat('h:mm a').parse('8:45 PM');
     //!--- if ending time greater then starting time then it wil be error
     newBooking = BookingService(
         serviceName: 'Booking',
         serviceDuration: 60,
-        bookingEnd: DateTime(
-            now.year, now.month, now.day, closingDate.hour, closingDate.minute),
-        bookingStart: DateTime(
-            now.year, now.month, now.day, opningDate.hour, opningDate.minute));
+        bookingEnd: DateTime(now.year, now.month, now.day, 16, 45),
+        bookingStart: DateTime(now.year, now.month, now.day, 8, 45));
   }
 
   //convert stream into list of dateTimeRange
